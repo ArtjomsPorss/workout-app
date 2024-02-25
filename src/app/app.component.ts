@@ -1,10 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
-export class AppComponent {
-  constructor() {}
+export class AppComponent implements OnInit {
+  constructor(private storage: Storage) {
+    this.initStorage();
+  }
+
+  async initStorage() {
+    await this.storage.create();
+  }
+
+  ngOnInit() {
+    // await this.storage.create();
+  }
 }
