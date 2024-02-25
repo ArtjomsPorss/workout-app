@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { IonicStorageModule } from '@ionic/storage-angular';
 // import { Drivers } from '@ionic/storage';
 // import * as cordovaSQLiteDriver from 'localforage-cordovasqlitedriver';
+import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,7 +29,7 @@ import { IonicStorageModule } from '@ionic/storage-angular';
   }
   )
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
