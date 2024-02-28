@@ -20,9 +20,9 @@ export class AddExercisesComponent  implements OnInit {
     this.populateList();
   }
 
-  async initStorage() {
-    await this.storage.create();
-  }
+  // async initStorage() {
+  //   await this.storage.create();
+  // }
 
   populateList() {
     this.storage.get('exercises').then((data: Exercise[] | null) => {
