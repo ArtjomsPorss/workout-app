@@ -1,7 +1,6 @@
 import { SQLiteDBConnection } from '@capacitor-community/sqlite';
 import { Injectable} from '@angular/core';
 import { SQLiteService } from './sqlite.service';
-import { BehaviorSubject, Observable } from 'rxjs';
 import { DbnameVersionService } from './dbname-version.service';
 import { UserUpgradeStatements } from '../upgrades/user.upgrade.statements';
 
@@ -11,13 +10,14 @@ export class CommonStorageService {
   private uUpdStmts: UserUpgradeStatements = new UserUpgradeStatements();
   private versionUpgrades;
   private loadToVersion;
-  private db!: SQLiteDBConnection;
-  private isReady: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  protected db!: SQLiteDBConnection;
 
   constructor(private sqliteService: SQLiteService,
   private dbVerService: DbnameVersionService) {
     this.versionUpgrades = this.uUpdStmts.userUpgrades;
     this.loadToVersion = this.versionUpgrades[this.versionUpgrades.length-1].toVersion;
+    const DB_USERS = 'myfitnessdb'
+    this.initializeDatabase(DB_USERS)
   }
   async initializeDatabase(dbName: string) {
     this.databaseName = dbName;
@@ -29,5 +29,8 @@ export class CommonStorageService {
                                           false
     );
     this.dbVerService.set(this.databaseName,this.loadToVersion);
+    this.reload();
   }
+
+  protected reload() {}
 }
