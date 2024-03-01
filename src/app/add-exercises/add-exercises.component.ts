@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Exercise } from '../exercise.interface';
 import { Storage } from '@ionic/storage-angular';
-// import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
+import { StorageService } from '../services/storage.service';
+import { of, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-add-exercises',
@@ -12,37 +13,40 @@ export class AddExercisesComponent  implements OnInit {
   exercises: Array<Exercise> = new Array<Exercise>;
   enteredValue: string = '';
 
-  constructor(private storage: Storage) { }
+  constructor(private storage: Storage, private storageService: StorageService) { }
 
 
   ngOnInit() {
-    // this.initStorage();
     this.populateList();
   }
 
-  // async initStorage() {
-  //   await this.storage.create();
-  // }
-
   populateList() {
-    this.storage.get('exercises').then((data: Exercise[] | null) => {
-      if (data) {
-        this.exercises = data;
-      }
-    });
+    try {
+      this.storageService.exerciseState().pipe(
+        switchMap(res => {
+          if (res) {
+            return this.storageService.fetchExercises();
+          } else {
+            return of([]); // Return an empty array when res is false
+          }
+        })
+      ).subscribe(data => {
+        this.exercises = data; // Update the user list when the data changes
+      });
+
+    } catch(err) {
+      throw new Error(`Error: ${err}`);
+    }
   }
 
   addRow() {
-    this.exercises.push({ name: this.enteredValue, emphasis: null, additionalInfo: null});
-    this.storage.set('exercises', this.exercises);
+    let exercise: Exercise = { name: this.enteredValue, additionalInfo: ''};
+    this.storageService.addExercise(exercise);
     this.enteredValue = '';
-    // this.writeSecretFile();
-    // this.readSecretFile();
   }
 
   deleteExercise(exercise: Exercise) {
     const idx = this.exercises.indexOf(exercise);
     this.exercises.splice(idx, 1);
-    this.storage.set('exercises', this.exercises);
   }
 }

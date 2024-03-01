@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
@@ -8,28 +8,41 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { IonicStorageModule } from '@ionic/storage-angular';
-// import { Drivers } from '@ionic/storage';
-// import * as cordovaSQLiteDriver from 'localforage-cordovasqlitedriver';
-import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
+
+import { SQLite } from '@ionic-native/sqlite/ngx';
+import { StorageService } from './services/storage.service';
+import { SQLiteService } from './services/sqlite.service';
+import { InitializeAppService } from './services/initialize.app.service';
+import { DbnameVersionService } from './services/dbname-version.service';
+
+export function initializeFactory(init: InitializeAppService) {
+  return () => init.initialize();
+}
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    BrowserModule, 
-    IonicModule.forRoot(), 
-    AppRoutingModule, 
-    IonicStorageModule.forRoot(
-      {
-    name: '__splitAndExercisesDb',
-    // driverOrder: [
-    //   cordovaSQLiteDriver._driver,
-    //   Drivers.LocalStorage,
-    //   Drivers.IndexedDB,
-    // ],
-  }
-  )
+    BrowserModule,
+    IonicModule.forRoot(),
+    AppRoutingModule,
+    IonicStorageModule.forRoot({
+      name: '__splitAndExercisesDb'
+    }),
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, ],
+  providers: [
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    SQLite,
+    StorageService,
+    SQLiteService,
+    InitializeAppService,
+    DbnameVersionService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeFactory,
+      deps: [InitializeAppService],
+      multi: true,
+    }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
