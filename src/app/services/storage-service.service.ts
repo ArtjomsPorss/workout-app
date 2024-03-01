@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
-import { Exercise } from './exercise.interface';
+import { Exercise } from '../interfaces/exercise.interface';
 
 @Injectable({
   providedIn: 'root'

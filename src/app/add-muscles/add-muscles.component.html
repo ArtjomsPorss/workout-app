@@ -1,0 +1,22 @@
+<ion-content>
+  <ion-list>
+    <!-- Repeat the following ion-item for each row -->
+    <ion-item>
+      <ion-input [(ngModel)]="enteredValue" placeholder="Add muscle"></ion-input>
+    </ion-item>
+
+    <!-- Add a button or any trigger to dynamically add more rows -->
+    <ion-item>
+      <ion-button (click)="addRow()">Add Muscle
+      </ion-button>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-item *ngFor="let muscle of muscles">
+      {{muscle.name}}
+      <ion-button fill="clear" slot="end" (click)="deleteMuscle(muscle)">      
+        <ion-icon aria-hidden="true" name="trash-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>

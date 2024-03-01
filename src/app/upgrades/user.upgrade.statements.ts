@@ -8,6 +8,10 @@ export class UserUpgradeStatements {
           name TEXT NOT NULL,
           additional_info TEXT NOT NULL
         );
+        CREATE TABLE IF NOT EXISTS muscles(
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          name TEXT NOT NULL
+        );
         `
       ]
     },

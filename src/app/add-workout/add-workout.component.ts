@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Exercise } from '../exercise.interface';
+import { Exercise } from '../interfaces/exercise.interface';
 import { Storage } from '@ionic/storage-angular';
 
 @Component({

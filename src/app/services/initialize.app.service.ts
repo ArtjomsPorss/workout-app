@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 
 import { SQLiteService } from './sqlite.service';
-import { StorageService } from './storage.service';
 
 import { Capacitor } from '@capacitor/core';
 import { defineCustomElements as pwaElements} from '@ionic/pwa-elements/loader';
 import { defineCustomElements as jeepSqlite} from 'jeep-sqlite/loader';
+import { InitStorageService } from './init.storage.service';
 
 @Injectable()
 export class InitializeAppService {
@@ -14,7 +14,7 @@ export class InitializeAppService {
 
   constructor(
     private sqliteService: SQLiteService,
-    private storageService: StorageService,
+    private storageService: InitStorageService,
     ) {
   }
 

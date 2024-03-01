@@ -14,6 +14,8 @@ import { StorageService } from './services/storage.service';
 import { SQLiteService } from './services/sqlite.service';
 import { InitializeAppService } from './services/initialize.app.service';
 import { DbnameVersionService } from './services/dbname-version.service';
+import { InitStorageService } from './services/init.storage.service';
+import { MuscleStorageService } from './services/muscle.storage.service';
 
 export function initializeFactory(init: InitializeAppService) {
   return () => init.initialize();
@@ -33,8 +35,10 @@ export function initializeFactory(init: InitializeAppService) {
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     SQLite,
     StorageService,
+    MuscleStorageService,
     SQLiteService,
     InitializeAppService,
+    InitStorageService,
     DbnameVersionService,
     {
       provide: APP_INITIALIZER,
