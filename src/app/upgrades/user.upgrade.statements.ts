@@ -6,7 +6,7 @@ export class UserUpgradeStatements {
         `CREATE TABLE IF NOT EXISTS exercises(
           id INTEGER PRIMARY KEY AUTOINCREMENT,
           name TEXT NOT NULL,
-          additional_info TEXT NOT NULL
+          additionalInfo TEXT NOT NULL
         );
         CREATE TABLE IF NOT EXISTS muscles(
           id INTEGER PRIMARY KEY AUTOINCREMENT,

@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 import { IonicStorageModule } from '@ionic/storage-angular';
 
 import { SQLite } from '@ionic-native/sqlite/ngx';
-import { StorageService } from './services/storage.service';
+import { ExcerciseStorageService } from './services/excercise.storage.service';
 import { SQLiteService } from './services/sqlite.service';
 import { InitializeAppService } from './services/initialize.app.service';
 import { DbnameVersionService } from './services/dbname-version.service';
@@ -34,7 +34,7 @@ export function initializeFactory(init: InitializeAppService) {
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     SQLite,
-    StorageService,
+    ExcerciseStorageService,
     MuscleStorageService,
     SQLiteService,
     InitializeAppService,

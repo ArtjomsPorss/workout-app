@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Exercise } from '../interfaces/exercise.interface';
-import { Storage } from '@ionic/storage-angular';
-import { StorageService } from '../services/storage.service';
+import { ExcerciseStorageService } from '../services/excercise.storage.service';
 import { of, switchMap } from 'rxjs';
+import { ExerciseDto } from '../interfaces/exercise.dto.interface';
+import { AlertInput } from '@ionic/angular';
 
 @Component({
   selector: 'app-add-exercises',
@@ -10,10 +11,13 @@ import { of, switchMap } from 'rxjs';
   styleUrls: ['./add-exercises.component.scss'],
 })
 export class AddExercisesComponent  implements OnInit {
-  exercises: Array<Exercise> = new Array<Exercise>;
-  enteredValue: string = '';
+  exercises: Array<ExerciseDto> = new Array<ExerciseDto>;
+  enteredValue: string = ''
+  descriptionText : string = ''
 
-  constructor(private storage: Storage, private storageService: StorageService) { }
+
+
+  constructor(private storage: ExcerciseStorageService) { }
 
 
   ngOnInit() {
@@ -22,10 +26,10 @@ export class AddExercisesComponent  implements OnInit {
 
   populateList() {
     try {
-      this.storageService.exerciseState().pipe(
+      this.storage.state().pipe(
         switchMap(res => {
           if (res) {
-            return this.storageService.fetchExercises();
+            return this.storage.fetch();
           } else {
             return of([]); // Return an empty array when res is false
           }
@@ -40,13 +44,14 @@ export class AddExercisesComponent  implements OnInit {
   }
 
   addRow() {
-    let exercise: Exercise = { name: this.enteredValue, additionalInfo: ''};
-    this.storageService.addExercise(exercise);
+    if (!this.enteredValue) { return }
+    let exercise: Exercise = { name: this.enteredValue, additionalInfo: this.descriptionText };
+    this.storage.add(exercise);
     this.enteredValue = '';
+    this.descriptionText = '';
   }
 
-  deleteExercise(exercise: Exercise) {
-    const idx = this.exercises.indexOf(exercise);
-    this.exercises.splice(idx, 1);
+  deleteExercise(exercise: ExerciseDto) {
+    this.storage.deleteById(exercise)
   }
 }

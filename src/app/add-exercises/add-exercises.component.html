@@ -2,18 +2,40 @@
   <ion-list>
     <!-- Repeat the following ion-item for each row -->
     <ion-item>
-      <ion-input [(ngModel)]="enteredValue" placeholder="Enter text"></ion-input>
-    </ion-item>
+      <ion-input [(ngModel)]="enteredValue" placeholder="Exercise Name"></ion-input>
+      <ion-button id="open-modal" expand="block">Edit Details</ion-button>
+      <ion-modal #modal trigger="open-modal" >
+        <ng-template>
+          <ion-header>
+            <ion-toolbar>
+              <ion-title>Exercise Details</ion-title>
+              <ion-buttons slot="end">
+                <ion-button (click)="modal.dismiss()">Close</ion-button>
+              </ion-buttons>
+            </ion-toolbar>
+          </ion-header>
+          <ion-content class="ion-padding">
+            <ion-textarea
+            placeholder="Exercise Description"
+            [(ngModel)]="descriptionText"
+            rows="4"
+            auto-grow
+          ></ion-textarea>
+          </ion-content>
+        </ng-template>
+      </ion-modal>
 
-    <!-- Add a button or any trigger to dynamically add more rows -->
-    <ion-item>
-      <ion-button (click)="addRow()">Add Row 5
+      <ion-button fill="clear" slot="end" (click)="addRow()">
+        <ion-icon aria-hidden="true" name="add-circle-outline"></ion-icon>
       </ion-button>
     </ion-item>
   </ion-list>
   <ion-list>
     <ion-item *ngFor="let exercise of exercises">
-      {{exercise.name}}
+        <ion-label>
+          <h2>{{exercise.name}}</h2>
+          <p>{{exercise.additionalInfo}}</p>
+        </ion-label>
       <ion-button fill="clear" slot="end" (click)="deleteExercise(exercise)">      
         <ion-icon aria-hidden="true" name="trash-outline"></ion-icon>
       </ion-button>
