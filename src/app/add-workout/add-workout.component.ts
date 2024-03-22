@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Exercise } from '../interfaces/exercise.interface';
 import { Storage } from '@ionic/storage-angular';
+import { switchMap, of } from 'rxjs';
+import { ExcerciseStorageService } from '../services/excercise.storage.service';
 
 @Component({
   selector: 'app-add-workout',
@@ -12,7 +14,7 @@ export class AddWorkoutComponent implements OnInit {
   selectedExercise: Exercise | any;
   addedExercises: Array<Exercise> = new Array<Exercise>;
 
-  constructor(private storage: Storage) { }
+  constructor(private exerciseStorage: ExcerciseStorageService) { }
 
   ngOnInit() {
     this.populateList();
@@ -20,19 +22,31 @@ export class AddWorkoutComponent implements OnInit {
   }
 
   populateList() {
-    this.storage.get('exercises').then((data: Exercise[] | null) => {
-      if (data) {
-        this.exercises = data;
-      }
-    });
+    try {
+      this.exerciseStorage.state().pipe(
+        switchMap(res => {
+          if (res) {
+            return this.exerciseStorage.fetch();
+          } else {
+            return of([]); // Return an empty array when res is false
+          }
+        })
+      ).subscribe(data => {
+        this.exercises = data; // Update the user list when the data changes
+      });
+
+    } catch (err) {
+      throw new Error(`Error: ${err}`);
+    }
   }
 
-  addExercise() {
+  addWorkoutExercise() {
     this.addedExercises.push(this.selectedExercise);
     this.selectedExercise = this.exercises[0];
+    this.selectedExercise = '';
   }
 
-  deleteExercise(exercise: Exercise) {
+  deleteWorkoutExercise(exercise: Exercise) {
     const idx = this.addedExercises.indexOf(exercise);
     this.addedExercises.splice(idx, 1);
   }
