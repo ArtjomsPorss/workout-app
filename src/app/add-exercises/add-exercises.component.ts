@@ -3,17 +3,16 @@ import { Exercise } from '../interfaces/exercise.interface';
 import { ExcerciseStorageService } from '../services/excercise.storage.service';
 import { of, switchMap } from 'rxjs';
 import { ExerciseDto } from '../interfaces/exercise.dto.interface';
-import { AlertInput } from '@ionic/angular';
 
 @Component({
   selector: 'app-add-exercises',
   templateUrl: './add-exercises.component.html',
   styleUrls: ['./add-exercises.component.scss'],
 })
-export class AddExercisesComponent  implements OnInit {
+export class AddExercisesComponent implements OnInit {
   exercises: Array<ExerciseDto> = new Array<ExerciseDto>;
   enteredValue: string = ''
-  descriptionText : string = ''
+  descriptionText: string = ''
 
 
 
@@ -38,7 +37,7 @@ export class AddExercisesComponent  implements OnInit {
         this.exercises = data; // Update the user list when the data changes
       });
 
-    } catch(err) {
+    } catch (err) {
       throw new Error(`Error: ${err}`);
     }
   }

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Exercise } from '../interfaces/exercise.interface';
-import { Storage } from '@ionic/storage-angular';
 import { switchMap, of } from 'rxjs';
 import { ExcerciseStorageService } from '../services/excercise.storage.service';
 
