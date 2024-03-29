@@ -1,11 +1,11 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-view-workout-plan',
-  templateUrl: './view-workout-plan.component.html',
-  styleUrls: ['./view-workout-plan.component.scss'],
+  selector: 'app-view-training-plan',
+  templateUrl: './view-training-plan.component.html',
+  styleUrls: ['./view-training-plan.component.scss'],
 })
-export class ViewWorkoutPlanComponent implements OnInit {
+export class ViewTrainingPlanComponent implements OnInit {
 
   @Output() toggleViewAllPlans: EventEmitter<any> = new EventEmitter();
 

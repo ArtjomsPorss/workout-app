@@ -1,0 +1,9 @@
+<ion-content [fullscreen]="true">
+  <ng-container *ngIf="viewAllPlans">
+    <app-view-training-plans (toggleViewSpecificPlan)="toggleViewSinglePlan()"></app-view-training-plans>
+  </ng-container>
+  <ng-container *ngIf="viewSinglePlan">
+    <app-view-training-plan (toggleViewAllPlans)="toggleViewAllPlans()"></app-view-training-plan>
+  </ng-container>
+</ion-content>
+

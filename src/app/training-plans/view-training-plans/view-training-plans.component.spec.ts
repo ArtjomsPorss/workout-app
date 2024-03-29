@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { ViewWorkoutPlansComponent } from './view-workout-plans.component';
+import { ViewTrainingPlansComponent } from './view-training-plans.component';
 
-describe('ViewWorkoutPlansComponent', () => {
-  let component: ViewWorkoutPlansComponent;
-  let fixture: ComponentFixture<ViewWorkoutPlansComponent>;
+describe('ViewTrainingPlansComponent', () => {
+  let component: ViewTrainingPlansComponent;
+  let fixture: ComponentFixture<ViewTrainingPlansComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ViewWorkoutPlansComponent ],
+      declarations: [ ViewTrainingPlansComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ViewWorkoutPlansComponent);
+    fixture = TestBed.createComponent(ViewTrainingPlansComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

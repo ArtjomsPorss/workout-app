@@ -8,9 +8,10 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
 import { Tab2PageRoutingModule } from './tab2-routing.module';
 
 import { AddSessionComponent } from '../add-session/add-session.component';
-import { WorkoutPlansComponent } from '../workout-plans/workout-plans.component';
-import { ViewWorkoutPlanComponent } from '../workout-plans/view-workout-plan/view-workout-plan.component';
-import { ViewWorkoutPlansComponent } from '../workout-plans/view-workout-plans/view-workout-plans.component';
+import { TrainingPlansComponent } from '../training-plans/training-plans.component';
+import { ViewTrainingPlanComponent } from '../training-plans/view-training-plan/view-training-plan.component';
+import { ViewTrainingPlansComponent } from '../training-plans/view-training-plans/view-training-plans.component';
+
 
 @NgModule({
   imports: [
@@ -20,6 +21,6 @@ import { ViewWorkoutPlansComponent } from '../workout-plans/view-workout-plans/v
     ExploreContainerComponentModule,
     Tab2PageRoutingModule
   ],
-  declarations: [Tab2Page, WorkoutPlansComponent, AddSessionComponent, ViewWorkoutPlanComponent, ViewWorkoutPlansComponent]
+  declarations: [Tab2Page, TrainingPlansComponent, AddSessionComponent, ViewTrainingPlanComponent, ViewTrainingPlansComponent]
 })
 export class Tab2PageModule { }

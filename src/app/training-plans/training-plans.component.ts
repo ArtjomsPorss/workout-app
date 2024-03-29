@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-workout-plans',
-  templateUrl: './workout-plans.component.html',
-  styleUrls: ['./workout-plans.component.scss'],
+  selector: 'app-training-plans',
+  templateUrl: './training-plans.component.html',
+  styleUrls: ['./training-plans.component.scss'],
 })
-export class WorkoutPlansComponent implements OnInit {
+export class TrainingPlansComponent implements OnInit {
   viewAllPlans: boolean = true;
   viewSinglePlan: boolean = false;
 
