@@ -4,11 +4,11 @@ import { switchMap, of } from 'rxjs';
 import { ExcerciseStorageService } from '../services/excercise.storage.service';
 
 @Component({
-  selector: 'app-add-workout',
-  templateUrl: './add-workout.component.html',
-  styleUrls: ['./add-workout.component.scss'],
+  selector: 'app-add-session',
+  templateUrl: './add-session.component.html',
+  styleUrls: ['./add-session.component.scss'],
 })
-export class AddWorkoutComponent implements OnInit {
+export class AddSessionComponent implements OnInit {
   exercises: Array<Exercise> = new Array<Exercise>;
   selectedExercise: Exercise | any;
   addedExercises: Array<Exercise> = new Array<Exercise>;

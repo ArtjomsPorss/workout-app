@@ -7,7 +7,7 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
 
 import { Tab2PageRoutingModule } from './tab2-routing.module';
 
-import { AddWorkoutComponent } from '../add-workout/add-workout.component';
+import { AddSessionComponent } from '../add-session/add-session.component';
 import { WorkoutPlansComponent } from '../workout-plans/workout-plans.component';
 import { ViewWorkoutPlanComponent } from '../workout-plans/view-workout-plan/view-workout-plan.component';
 import { ViewWorkoutPlansComponent } from '../workout-plans/view-workout-plans/view-workout-plans.component';
@@ -20,6 +20,6 @@ import { ViewWorkoutPlansComponent } from '../workout-plans/view-workout-plans/v
     ExploreContainerComponentModule,
     Tab2PageRoutingModule
   ],
-  declarations: [Tab2Page, WorkoutPlansComponent, AddWorkoutComponent, ViewWorkoutPlanComponent, ViewWorkoutPlansComponent]
+  declarations: [Tab2Page, WorkoutPlansComponent, AddSessionComponent, ViewWorkoutPlanComponent, ViewWorkoutPlansComponent]
 })
 export class Tab2PageModule { }
