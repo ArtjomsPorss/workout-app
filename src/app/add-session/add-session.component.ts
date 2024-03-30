@@ -39,13 +39,13 @@ export class AddSessionComponent implements OnInit {
     }
   }
 
-  addWorkoutExercise() {
+  addTrainingExercise() {
     this.addedExercises.push(this.selectedExercise);
     this.selectedExercise = this.exercises[0];
     this.selectedExercise = '';
   }
 
-  deleteWorkoutExercise(exercise: Exercise) {
+  deleteTrainingExercise(exercise: Exercise) {
     const idx = this.addedExercises.indexOf(exercise);
     this.addedExercises.splice(idx, 1);
   }

@@ -3,7 +3,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { AddSessionComponent } from './add-session.component';
 
-describe('AddWorkoutComponent', () => {
+describe('AddSessionComponent', () => {
   let component: AddSessionComponent;
   let fixture: ComponentFixture<AddSessionComponent>;
 

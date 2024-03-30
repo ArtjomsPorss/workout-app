@@ -4,7 +4,7 @@
       <ion-select [(ngModel)]="selectedExercise" aria-label="Select Exercise" placeholder="Select Exercise" interface="action-sheet">
         <ion-select-option *ngFor="let exercise of exercises" [value]="exercise">{{exercise.name}}</ion-select-option>
       </ion-select>
-      <ion-button fill="clear" slot="end" (click)="addWorkoutExercise()">
+      <ion-button fill="clear" slot="end" (click)="addTrainingExercise()">
         <ion-icon aria-hidden="true" name="add-circle-outline"></ion-icon>
       </ion-button>
     </ion-item>
@@ -15,7 +15,7 @@
   <ion-list>
     <ion-item *ngFor="let addedExercise of addedExercises">
       {{addedExercise.name}}
-      <ion-button fill="clear" slot="end" (click)="deleteWorkoutExercise(addedExercise)">
+      <ion-button fill="clear" slot="end" (click)="deleteTrainingExercise(addedExercise)">
         <ion-icon aria-hidden="true" name="trash-outline"></ion-icon>
       </ion-button>
     </ion-item>

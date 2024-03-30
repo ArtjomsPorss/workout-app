@@ -1,5 +1,5 @@
 # Exercise planning app
-attempt to create an app for tracking workouts
+attempt to create an app for tracking training sessions
 
 ## Run in browser
 `npm run ionic:web`

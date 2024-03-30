@@ -1,6 +1,6 @@
 import { Exercise } from "./exercise.interface";
 
-// workout within a training plan
-export interface Workout {
+// session within a training plan
+export interface Session {
     exercises: Array<Exercise>;
 }

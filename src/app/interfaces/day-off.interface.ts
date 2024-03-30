@@ -1,4 +1,4 @@
-import { Workout } from "./workout.interface";
+import { Session } from "./session.interface";
 
 // a day off within the microcycle
-export interface DayOff extends Workout { }
+export interface DayOff extends Session { }
