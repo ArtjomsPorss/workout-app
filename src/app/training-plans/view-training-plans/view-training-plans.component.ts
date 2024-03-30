@@ -13,7 +13,7 @@ export class ViewTrainingPlansComponent implements OnInit {
   ngOnInit() { }
 
   createPlan(): void {
-    this.toggleViewSpecificPlan.emit();
+    this.toggleViewSpecificPlan.emit(null);
   }
 
 }

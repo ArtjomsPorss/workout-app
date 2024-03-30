@@ -1,6 +1,6 @@
 <ion-content [fullscreen]="true">
   <ng-container *ngIf="viewAllPlans">
-    <app-view-training-plans #appViewTrainingPlans (toggleViewSpecificPlan)="toggleViewSinglePlan(1)"></app-view-training-plans>
+    <app-view-training-plans #appViewTrainingPlans (toggleViewSpecificPlan)="toggleViewSinglePlan($event)"></app-view-training-plans>
   </ng-container>
   <ng-container *ngIf="viewSinglePlan">
     <app-view-training-plan #appViewTrainingPlan (toggleViewAllPlans)="toggleViewAllPlans()"></app-view-training-plan>
