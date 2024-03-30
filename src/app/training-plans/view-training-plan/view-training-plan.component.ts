@@ -13,6 +13,10 @@ export class ViewTrainingPlanComponent implements OnInit {
 
   ngOnInit() { }
 
+  viewById(id: number): void {
+    console.log(id)
+  }
+
   savePlan(): void {
     this.toggleViewAllPlans.emit();
   }

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ViewTrainingPlanComponent } from './view-training-plan/view-training-plan.component';
+import { ViewTrainingPlansComponent } from './view-training-plans/view-training-plans.component';
 
 @Component({
   selector: 'app-training-plans',
@@ -8,6 +10,15 @@ import { Component, OnInit } from '@angular/core';
 export class TrainingPlansComponent implements OnInit {
   viewAllPlans: boolean = true;
   viewSinglePlan: boolean = false;
+  singlePlanId: number | any;
+
+  // making sure the viewById is called on appViewTrainingPlan when it is initialised and if ID was passed
+  @ViewChild('appViewTrainingPlan') set viewChild(appViewTrainingPlan: ViewTrainingPlanComponent) {
+    if (appViewTrainingPlan && this.singlePlanId) {
+      appViewTrainingPlan.viewById(this.singlePlanId)
+    }
+  }
+  @ViewChild('appViewTrainingPlans') appViewTrainingPlans: ViewTrainingPlansComponent;
 
   constructor() { }
 
@@ -18,9 +29,12 @@ export class TrainingPlansComponent implements OnInit {
     this.viewSinglePlan = false;
   }
 
-  toggleViewSinglePlan(): void {
+  toggleViewSinglePlan(id: number | any): void {
     this.viewAllPlans = false;
     this.viewSinglePlan = true;
+    if (id) {
+      this.singlePlanId = id
+    }
   }
 
 }
