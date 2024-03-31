@@ -14,7 +14,7 @@ export class TrainingPlansComponent implements OnInit {
 
   // making sure the viewById is called on appViewTrainingPlan when it is initialised and if ID was passed
   @ViewChild('appViewTrainingPlan') set viewChild(appViewTrainingPlan: ViewTrainingPlanComponent) {
-    if (appViewTrainingPlan && this.singlePlanId) {
+    if (appViewTrainingPlan) {
       appViewTrainingPlan.viewById(this.singlePlanId)
     }
   }

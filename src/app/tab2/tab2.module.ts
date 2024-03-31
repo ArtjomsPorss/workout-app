@@ -11,7 +11,7 @@ import { AddSessionComponent } from '../add-session/add-session.component';
 import { TrainingPlansComponent } from '../training-plans/training-plans.component';
 import { ViewTrainingPlanComponent } from '../training-plans/view-training-plan/view-training-plan.component';
 import { ViewTrainingPlansComponent } from '../training-plans/view-training-plans/view-training-plans.component';
-
+import { TrainingWeekComponent } from '../training-plans/training-week/training-week.component';
 
 @NgModule({
   imports: [
@@ -21,6 +21,6 @@ import { ViewTrainingPlansComponent } from '../training-plans/view-training-plan
     ExploreContainerComponentModule,
     Tab2PageRoutingModule
   ],
-  declarations: [Tab2Page, TrainingPlansComponent, AddSessionComponent, ViewTrainingPlanComponent, ViewTrainingPlansComponent]
+  declarations: [Tab2Page, TrainingPlansComponent, AddSessionComponent, ViewTrainingPlanComponent, ViewTrainingPlansComponent, TrainingWeekComponent]
 })
 export class Tab2PageModule { }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 import { CommonStorageService } from './common.storage.service';
 import { DbnameVersionService } from './dbname-version.service';
 import { SQLiteService } from './sqlite.service';
@@ -36,10 +36,15 @@ export class TrainingPlanStorageService extends CommonStorageService {
     await this.loadTrainingPlans();
     this.isUserReady.next(true);
   }
-  async add(trainingPlan: TrainingPlan) {
+  async getById(id: number): Promise<TrainingPlanDto[]> {
+    const sql = 'SELCT * FROM training_plan WHERE id=${id}'
+    return (await this.db.query(sql)).values as TrainingPlanDto[]
+  }
+  async add(trainingPlan: TrainingPlan) : Promise<TrainingPlanDto[]> {
     const sql = `INSERT INTO training_plan (name) VALUES (?);`;
-    await this.db.run(sql, [trainingPlan.name]);
+    const promise: TrainingPlanDto[] = (await this.db.run(sql, [trainingPlan.name])).changes.values as TrainingPlanDto[]
     await this.getAll();
+    return promise
   }
   async updateById(trainingPlan: TrainingPlanDto) {
     const sql = `UPDATE training_plan SET name=${trainingPlan.name} WHERE id=${trainingPlan.id}`;
