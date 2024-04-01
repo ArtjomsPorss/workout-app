@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { of, switchMap } from 'rxjs';
 import { TrainingPlanDto } from 'src/app/interfaces/training-plan.dto.interface';
-import { TrainingPlanStorageService } from 'src/app/services/training-plan-storage-service';
+import { TrainingPlanStorageService } from 'src/app/services/training-plan-storage.service';
 
 @Component({
   selector: 'app-view-training-plans',

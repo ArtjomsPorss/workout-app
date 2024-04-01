@@ -5,6 +5,7 @@ import { DbnameVersionService } from './dbname-version.service';
 import { SQLiteService } from './sqlite.service';
 import { TrainingPlanDto } from '../interfaces/training-plan.dto.interface';
 import { TrainingPlan } from '../interfaces/training-plan.interface';
+import { capSQLiteChanges } from '@capacitor-community/sqlite';
 
 @Injectable({
   providedIn: 'root'
@@ -37,17 +38,17 @@ export class TrainingPlanStorageService extends CommonStorageService {
     this.isUserReady.next(true);
   }
   async getById(id: number): Promise<TrainingPlanDto[]> {
-    const sql = 'SELCT * FROM training_plan WHERE id=${id}'
+    const sql = `SELECT * FROM training_plan WHERE id=${id}`
     return (await this.db.query(sql)).values as TrainingPlanDto[]
   }
-  async add(trainingPlan: TrainingPlan) : Promise<TrainingPlanDto[]> {
+  async add(trainingPlan: TrainingPlan) : Promise<number> {
     const sql = `INSERT INTO training_plan (name) VALUES (?);`;
-    const promise: TrainingPlanDto[] = (await this.db.run(sql, [trainingPlan.name])).changes.values as TrainingPlanDto[]
+    const promise: capSQLiteChanges = await this.db.run(sql, [trainingPlan.name])
     await this.getAll();
-    return promise
+    return promise.changes.lastId
   }
   async updateById(trainingPlan: TrainingPlanDto) {
-    const sql = `UPDATE training_plan SET name=${trainingPlan.name} WHERE id=${trainingPlan.id}`;
+    const sql = `UPDATE training_plan SET name="${trainingPlan.name}" WHERE id=${trainingPlan.id}`;
     await this.db.run(sql);
     await this.getAll();
   }

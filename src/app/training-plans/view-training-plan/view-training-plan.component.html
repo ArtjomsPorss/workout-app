@@ -9,13 +9,17 @@
     </ion-button>
   </ion-toolbar>
   <ion-toolbar>
-    <ion-title fill="clear" slot="end">Training Week</ion-title>
-    <ion-button>1</ion-button> 
-    <ion-button fill="outline">2</ion-button> 
+    <ion-input [(ngModel)]="planName" placeholder="Plan Name"></ion-input>
+  </ion-toolbar>
+  <ion-toolbar>
+    <!-- <ion-button>1</ion-button>  -->
+    <!-- <ion-button fill="outline">2</ion-button>  -->
     <!-- <ion-button fill="clear" slot="end" (click)="savePlan()"> -->
-    <ion-button>
+    <ion-button *ngFor="let week of weeks" [attr.fill]="week.id !== selectedWeekId ? 'outline' : null">{{ week.num }}</ion-button>
+    <ion-button (click)="addWeek()">
       <ion-icon slot="icon-only" fill="outline" name="add-outline"></ion-icon>
     </ion-button> 
+    <ion-title fill="clear" slot="end">Training Week</ion-title>
   </ion-toolbar>
   <app-training-week></app-training-week>
 </ion-header>

@@ -16,7 +16,12 @@ export class UserUpgradeStatements {
           id INTEGER PRIMARY KEY AUTOINCREMENT,
           name TEXT NOT NULL
         );
-        `
+        CREATE TABLE IF NOT EXISTS training_week(
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          num INTEGER NOT NULL,
+          plan_id INTEGER NOT NULL
+        );
+       `
       ]
     },
     /*
