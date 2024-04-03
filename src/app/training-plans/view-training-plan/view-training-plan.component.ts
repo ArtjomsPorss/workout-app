@@ -28,7 +28,6 @@ export class ViewTrainingPlanComponent implements OnInit {
   }
 
   viewById(id: number): void {
-    console.log(id)
     if (id) {
       this.trainingPlanStorage.getById(id).then(plans => {
         this.trainingPlan = plans[0]; 
@@ -50,7 +49,16 @@ export class ViewTrainingPlanComponent implements OnInit {
     }
 
     this.trainingPlanStorage.updateById(this.trainingPlan)
+    this.cleanup()
+    // this.trainingWeekStorage.setPlanId(null)
     this.toggleViewAllPlans.emit();
+  }
+
+  cleanup() {
+    this.trainingPlan = null;
+    this.weeks = [];
+    this.selectedWeekId = null;
+    this.planName = '';
   }
 
   addWeek(): void {
@@ -77,6 +85,8 @@ export class ViewTrainingPlanComponent implements OnInit {
     } catch (err) {
       throw new Error(`Error: ${err}`);
     }
-
+    // this.trainingWeekStorage.reload();
   }
 }
+
+

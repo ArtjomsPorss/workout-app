@@ -14,25 +14,34 @@ export class TrainingWeekStorageService extends CommonStorageService {
   public exerciseList: BehaviorSubject<TrainingWeekDto[]> = new BehaviorSubject<TrainingWeekDto[]>([]);
   private isUserReady: BehaviorSubject<boolean> = new BehaviorSubject(false);
   // to load data for specific plan
-  planId: number;
+  private planIdSubject: BehaviorSubject<number>;
+  private planId: Observable<number>;
 
   constructor(sqliteService: SQLiteService,
     dbVerService: DbnameVersionService
   ) {
     super(sqliteService, dbVerService);
+    this.setUpPlanIdChangeTriggerExerciseListReload()
+  }
+  setUpPlanIdChangeTriggerExerciseListReload(): void {
+    this.planIdSubject = new BehaviorSubject<number>(null)
+    this.planId = this.planIdSubject.asObservable()
+    this.planId.subscribe((planIdNumber) => this.reload())
+
   }
   override reload(): void {
     this.getAll();
   }
   state(planId: number) {
-    this.planId = planId
+    this.planIdSubject.next(planId);
     return this.isUserReady.asObservable();
   }
   fetch(): Observable<TrainingWeekDto[]> {
     return this.exerciseList.asObservable();
   }
   async loadTrainingWeeks() {
-    const exercises: TrainingWeekDto[] = (await this.db.query(`SELECT * FROM training_week WHERE plan_id = "${this.planId}";`))
+    const exercises: TrainingWeekDto[] = 
+    (await this.db.query(`SELECT * FROM training_week WHERE plan_id = "${this.planIdSubject.getValue()}";`))
       .values as TrainingWeekDto[];
     this.exerciseList.next(exercises);
   }
@@ -59,5 +68,8 @@ export class TrainingWeekStorageService extends CommonStorageService {
     const sql = `DELETE FROM training_week WHERE id=${trainingPlan.id}`;
     await this.db.run(sql);
     await this.getAll();
+  }
+  setPlanId(planId: number) {
+    this.planIdSubject.next(planId)
   }
 }
