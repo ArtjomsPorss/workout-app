@@ -32,6 +32,7 @@ export class ViewTrainingPlanComponent implements OnInit {
       this.trainingPlanStorage.getById(id).then(plans => {
         this.trainingPlan = plans[0]; 
         this.populateLists(this.trainingPlan.id)
+        this.planName = this.trainingPlan.name
       })
     } else {
       this.trainingPlanStorage.add({name: ''}).then(planId => {

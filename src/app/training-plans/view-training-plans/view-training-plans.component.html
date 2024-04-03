@@ -10,8 +10,10 @@
  </ion-toolbar>
 </ion-header>
 <ion-list>
-    <ion-item *ngFor="let plan of trainingPlans">
+    <ion-item *ngFor="let plan of trainingPlans" >
+      <ion-button expand="full" fill="clear" (click)="viewPlan(plan.id)">
       {{plan.name}}
+      </ion-button>
       <ion-button fill="clear" slot="end" (click)="deletePlan(plan)">      
         <ion-icon aria-hidden="true" name="trash-outline"></ion-icon>
       </ion-button>

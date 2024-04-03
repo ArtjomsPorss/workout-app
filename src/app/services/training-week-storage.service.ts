@@ -41,7 +41,7 @@ export class TrainingWeekStorageService extends CommonStorageService {
   }
   async loadTrainingWeeks() {
     const exercises: TrainingWeekDto[] = 
-    (await this.db.query(`SELECT * FROM training_week WHERE plan_id = "${this.planIdSubject.getValue()}";`))
+    (await this.db.query(`SELECT * FROM training_week WHERE plan_id = ${this.planIdSubject.getValue()};`))
       .values as TrainingWeekDto[];
     this.exerciseList.next(exercises);
   }

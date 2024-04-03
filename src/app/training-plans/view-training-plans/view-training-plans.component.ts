@@ -39,6 +39,10 @@ export class ViewTrainingPlansComponent implements OnInit {
     this.toggleViewSpecificPlan.emit(null);
   }
 
+  viewPlan(planId: number): void {
+    this.toggleViewSpecificPlan.emit(planId)
+  }
+
   deletePlan(plan: TrainingPlanDto) {
     this.storage.deleteById(plan);
   }

@@ -34,6 +34,8 @@ export class TrainingPlansComponent implements OnInit {
     this.viewSinglePlan = true;
     if (id) {
       this.singlePlanId = id
+    } else {
+      this.singlePlanId = null
     }
   }
 
